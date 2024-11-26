@@ -1,12 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Python Code Viewer</title>
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #2d2d2d;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #61dafb;
+        }
+
+        pre {
+            position: relative;
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            max-width: 80%;
+            margin: 20px auto;
+        }
+
+        button.copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #61dafb;
+            border: none;
+            color: #000;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        button.copy-btn:hover {
+            background: #21a1f1;
+        }
+    </style>
 </head>
+
 <body>
-    import os
+    <h1>server.py</h1>
+    <pre><button class="copy-btn">Copy Code</button><code class="language-python">
+import os
 
 def organize_files_by_extension(directory):
     """
@@ -47,5 +97,20 @@ if __name__ == "__main__":
     directory_to_organize = input("Enter the directory path to organize: ").strip()
     organize_files_by_extension(directory_to_organize)
 
+   
+</code></pre>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script>
+        document.querySelectorAll('.copy-btn').forEach((btn) => {
+            btn.addEventListener('click', (event) => {
+                const codeBlock = event.target.nextElementSibling.innerText;
+                navigator.clipboard.writeText(codeBlock).then(() => {
+                    alert('Code copied to clipboard!');
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
